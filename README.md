@@ -19,7 +19,7 @@ COCO is a platform designed to automate the benchmarking of numerical optimizati
     ```
 3. **Run Experiment**: Execute the following command to run the experiment for each algorithm:
     ```bash
-    python example_experiment_new_name.py
+    python example_experiment_2.py
     ```
    This will store the experiment data in a specified folder.
 
@@ -27,16 +27,10 @@ COCO is a platform designed to automate the benchmarking of numerical optimizati
 
 ## Running the Experiment
 To run the experiment on your local setup:
-1. Ensure Jupyter Notebook is installed, or install it using pip:
+1. Execute the following command to run the experiment for each algorithm:
     ```bash
-    pip install jupyter
+    jupyter notebook example_experiment_2.py
     ```
-2. Navigate to the directory containing the experiment notebook.
-3. Launch the notebook:
-    ```bash
-    jupyter notebook example_experiment_new_name.ipynb
-    ```
-4. Execute the cells within the notebook to run the experiment.
 
 ## Results
 Results are detailed in an HTML file, highlighting:
