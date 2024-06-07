@@ -1,45 +1,77 @@
-# COCO
-using COCO to compare CMA-ES to DE
-Part One: What Is COCO?
-COCO is a platform for Comparing Continuous Optimizers in a black-box setting. It aims at automatizing the tedious and repetitive task of benchmarking numerical optimization algorithms to the greatest possible extent.
-We consider the continuous black-box optimization or search problem to minimize
- 
-Such that for the   constraints
- 
-we have   for all  . More specifically, we aim to find, as quickly as possible, one or several solutions   in the search space   with small value(s) of   that satisfy all above constraints  . We generally consider time to be the number of calls to the function  .
-A continuous optimization algorithm, also known as solver, addresses the above problem. Here, we assume that   is known, but no prior knowledge about   or   is available to the algorithm. That is,   and   are considered as a black-box which the algorithm can query with solutions   to get the respective values   and  .[1]
-Part Two: The experiment
-I downloaded the experiment code for python from this link: https://github.com/numbbo/coco/tree/master/code-experiments/build/python
-I changed the solver to the solver of my choosing, in this case, I was comparing CMA and DE so I used fmin from CMA package of python (which I installed using pip install) and DE from scipy package (scipy.optimize.differential_evolution)
+# Comparing CMA-ES to DE using COCO
+This project utilizes the COCO (Comparing Continuous Optimizers) platform to benchmark and compare the performance of CMA-ES (Covariance Matrix Adaptation Evolution Strategy) and Differential Evolution (DE) algorithms in a black-box optimization setting.
+## Table of Contents
+- [What Is COCO?](#what-is-coco)
+- [The Experiment](#the-experiment)
+- [Running the Experiment](#running-the-experiment)
+- [Results](#results)
+- [Functions](#functions)
+- [Conclusion](#conclusion)
 
-[1]: http://numbbo.github.io/coco-doc/
- 
-Using cmd, I entered the following command to do the experiment on each algorithm separately:
-python example_experiment_new_name.py
-This command runs the experiment for the chosen solver and stores the data in a folder. 
-To compare two algorithms, we do the post-processing for both of them.
-The final result, including the figures and table comparing two algorithms from different aspects, is stored as an HTML file. 
-In the first part of the result in ECDF (Empirical Cumulative Distribution Functions), in lower dimensions DE is higher and in high dimensions, there are almost equal.
+## What Is COCO?
+COCO is a platform designed to automate the benchmarking of numerical optimization algorithms. It specifically addresses the continuous black-box optimization problem, evaluating algorithms based on the number of function evaluations required to find solutions that satisfy predefined constraints.
 
-The functions the bbob tests the algorithm on, are generally categorized in 5 categories (1):
-•	Separable functions
-o	Sphere (function 1 in bbob suite)
-o	Ellipsoid separable (function 2 in bbob suite)
-•	Functions with low or moderate conditioning
-o	Attractive sector (function 6 in bbob suite)
-o	Rosenbrock original (function 8 in bbob suite)
-•	Functions with high conditioning and unimodal
-o	Sharp ridge (function 13 in bbob suite)
-o	Sum of different powers (function 14 in bbob suite)
-•	Multi-modal functions with adequate global structure
-o	Rastrigin (function 15 in bbob suite)
-o	Schaffer F7, condition 10 (function 17 in bbob suite)
-•	Multi-modal functions with weak global structure
-o	Schwefel x*sin(x) (function 20 in bbob suite)
-o	Gallagher 101 peaks (function 21 in bbob suite)
-Considering the ECDF for each function, in dimension 2 DE is better than all except “Functions with low or moderate conditioning”
-In dimension 3 is better than all except in “Multi-modal functions with adequate global structure” and “Functions with low or moderate conditioning” and “Multi-modal functions with weak global structure”
-And in dimension 5 is also the same and from dimension 10 and on DE and CMA are performing almost the same.
-Seems that DE works better than CMA except in “Functions with low or moderate conditioning” and “Multi-modal functions with adequate global structure” but in overall result, DE is working better.
-In the comparison of average running time, DE is higher.
-[1]: http://numbbo.github.io/coco-doc/bbob-biobj/functions/#the-single-objective-bbob-functions
+## The Experiment
+1. **Download Experiment Code**: Download the Python experiment code from [COCO's GitHub repository](https://github.com/numbbo/coco/tree/master/code-experiments/build/python).
+2. **Modify Solver**: Replace the default solver with CMA-ES and DE. Ensure both are installed via pip:
+    ```bash
+    pip install cma scipy
+    ```
+3. **Run Experiment**: Execute the following command to run the experiment for each algorithm:
+    ```bash
+    python example_experiment_new_name.py
+    ```
+   This will store the experiment data in a specified folder.
+
+4. **Post-Processing**: After the experiments, perform post-processing to generate comparative figures and tables. The final results are stored in an HTML file.
+
+## Running the Experiment
+To run the experiment on your local setup:
+1. Ensure Jupyter Notebook is installed, or install it using pip:
+    ```bash
+    pip install jupyter
+    ```
+2. Navigate to the directory containing the experiment notebook.
+3. Launch the notebook:
+    ```bash
+    jupyter notebook example_experiment_new_name.ipynb
+    ```
+4. Execute the cells within the notebook to run the experiment.
+
+## Results
+Results are detailed in an HTML file, highlighting:
+- **Empirical Cumulative Distribution Functions (ECDF)**: Comparing performance across different dimensions.
+- **Detailed Results**:
+  - **Lower Dimensions**: DE outperforms CMA-ES.
+  - **Higher Dimensions**: Both algorithms perform comparably.
+
+## Functions
+The bbob suite tests the algorithms across a variety of functions, categorized into:
+1. **Separable Functions**
+   - Sphere
+   - Ellipsoid separable
+2. **Low/Moderate Conditioning**
+   - Attractive sector
+   - Rosenbrock original
+3. **High Conditioning and Unimodal**
+   - Sharp ridge
+   - Sum of different powers
+4. **Multi-Modal with Adequate Global Structure**
+   - Rastrigin
+   - Schaffer F7
+5. **Multi-Modal with Weak Global Structure**
+   - Schwefel x*sin(x)
+   - Gallagher 101 peaks
+
+### Detailed Function Analysis
+- **Dimension 2**: DE outperforms except in low/moderate conditioning functions.
+- **Dimension 3**: DE generally performs better, with exceptions noted.
+- **Dimension 5 and beyond**: Performance of DE and CMA-ES aligns more closely.
+
+### Average Running Time
+- DE exhibits a higher average running time compared to CMA-ES.
+
+## Conclusion
+DE generally demonstrates superior performance over CMA-ES in various test scenarios, albeit with a longer average running time. For a detailed analysis and visual comparisons, refer to the HTML file produced during post-processing.
+
+For more detailed information on the functions used in the experiments, visit the [COCO documentation](http://numbbo.github.io/coco-doc/bbob-biobj/functions/#the-single-objective-bbob-functions).
