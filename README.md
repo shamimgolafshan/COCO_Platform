@@ -1,4 +1,4 @@
-# Comparing CMA-ES to DE using COCO
+# Comparing CMA-ES, DE and PSO using COCO
 This project utilizes the COCO (Comparing Continuous Optimizers) platform to benchmark and compare the performance of CMA-ES (Covariance Matrix Adaptation Evolution Strategy) and Differential Evolution (DE) algorithms in a black-box optimization setting.
 ## Table of Contents
 - [What Is COCO?](#what-is-coco)
